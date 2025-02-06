@@ -4,11 +4,13 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
+--- Create Developers table ---
 CREATE OR REPLACE TABLE `Developers` (
     `developerID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `name` VARCHAR(100) NOT NULL
 );
 
+--- Creates Games table ---
 CREATE OR REPLACE TABLE `Games` (
     `gameID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `title` VARCHAR(100) NOT NULL,
@@ -21,7 +23,7 @@ CREATE OR REPLACE TABLE `Games` (
     `quantityInStock` INT NOT NULL,
     CONSTRAINT `developerfk_1` FOREIGN KEY (`developerID`) REFERENCES `Developers`(`developerID`)
 );
-
+--- Creates Customers table ---
 CREATE OR REPLACE TABLE `Customers` (
     `customerID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `firstName` VARCHAR(100) NOT NULL,
@@ -30,6 +32,7 @@ CREATE OR REPLACE TABLE `Customers` (
     `phoneNumber` VARCHAR(10)
 );
 
+--- Creates Orders table ---
 CREATE OR REPLACE TABLE `Orders` (
     `orderID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `orderDate` DATE NOT NULL,
@@ -40,6 +43,7 @@ CREATE OR REPLACE TABLE `Orders` (
     CONSTRAINT `gamefk_1` FOREIGN KEY (`gameID`) REFERENCES `Games`(`gameID`)
 );
 
+--- Inserts sample data into Developers table ---
 INSERT INTO Developers (name)
 VALUES
 ('Game Freak'),
@@ -47,6 +51,7 @@ VALUES
 ('Square Enix'),
 ('Bungie');
 
+--- Inserts sample data into Games table ---
 INSERT INTO Games (title, developerID, genre, releaseDate, price, platform, `condition`, quantityInStock) 
 VALUES 
 ('Pokemon Sapphire', (SELECT developerID FROM Developers WHERE name = 'Game Freak'), 'RPG', '2003-10-15', 80, 'Game Boy Advance', 'False', 3),
@@ -55,7 +60,7 @@ VALUES
 ('Final Fantasy VII', (SELECT developerID FROM Developers WHERE name = 'Square Enix'), 'RPG', '1997-01-31', 125, 'Playstation 1', 'False', 6),
 ('Halo: Combat Evolved', (SELECT developerID FROM Developers WHERE name = 'Bungie'), 'FPS', '2001-11-15', 135, 'Xbox', 'True', 5);
 
-
+--- Inserts sample data into Customers table ---
 INSERT INTO Customers (firstName, lastName, email, phoneNumber)
 VALUES
 ('Liam', 'Smith', 'liam.smith@oregonstate.edu', '9151234567'),
@@ -65,6 +70,7 @@ VALUES
 ('William', 'Jones', 'william.jones@aol.com', '3613456444'),
 ('Ava', 'Garcia', 'ava.garcia@bot.com', '8006667777');
 
+--- Inserts sample data into Orders table ---
 INSERT INTO Orders (orderDate, customerID, gameID, quantity)
 VALUES
 ('2025-06-15', (SELECT customerID FROM Customers WHERE firstName = 'Liam' AND lastName = 'Smith'), (SELECT gameID FROM Games WHERE title ='Pokemon Sapphire'), 1),
