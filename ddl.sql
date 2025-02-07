@@ -54,11 +54,11 @@ VALUES
 --- Inserts sample data into Games table ---
 INSERT INTO Games (title, developerID, genre, releaseDate, price, platform, `condition`, quantityInStock) 
 VALUES 
-('Pokemon Sapphire', (SELECT developerID FROM Developers WHERE name = 'Game Freak'), 'RPG', '2003-10-15', 80, 'Game Boy Advance', 'False', 3),
-('Super Mario World', (SELECT developerID FROM Developers WHERE name = 'Nintendo'), 'platformer', '1990-11-21', 500, 'Super Nintendo', 'True', 1),
-('The Legend of Zelda: Ocarina of Time', (SELECT developerID FROM Developers WHERE name = 'Nintendo'), 'Adventure', '1998-11-23', 150, 'Nintendo 64', 'False', 2),
-('Final Fantasy VII', (SELECT developerID FROM Developers WHERE name = 'Square Enix'), 'RPG', '1997-01-31', 125, 'Playstation 1', 'False', 6),
-('Halo: Combat Evolved', (SELECT developerID FROM Developers WHERE name = 'Bungie'), 'FPS', '2001-11-15', 135, 'Xbox', 'True', 5);
+('Pokemon Sapphire', (SELECT developerID FROM Developers WHERE name = 'Game Freak'), 'RPG', '2003-10-15', 80, 'Game Boy Advance', 0, 3),
+('Super Mario World', (SELECT developerID FROM Developers WHERE name = 'Nintendo'), 'platformer', '1990-11-21', 500, 'Super Nintendo', 1, 1),
+('The Legend of Zelda: Ocarina of Time', (SELECT developerID FROM Developers WHERE name = 'Nintendo'), 'Adventure', '1998-11-23', 150, 'Nintendo 64', 0, 2),
+('Final Fantasy VII', (SELECT developerID FROM Developers WHERE name = 'Square Enix'), 'RPG', '1997-01-31', 125, 'Playstation 1', 0, 6),
+('Halo: Combat Evolved', (SELECT developerID FROM Developers WHERE name = 'Bungie'), 'FPS', '2001-11-15', 135, 'Xbox', 1, 5);
 
 --- Inserts sample data into Customers table ---
 INSERT INTO Customers (firstName, lastName, email, phoneNumber)
