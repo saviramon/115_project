@@ -1,5 +1,5 @@
 -- Christian Duval --
--- X'avier Tejada --
+-- Xavier Tejada --
 
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
