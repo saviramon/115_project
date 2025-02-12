@@ -5,13 +5,13 @@ SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
 -- Create Developers table --
-CREATE TABLE `Developers` (
+CREATE OR REPLACE TABLE `Developers` (
     `developerID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `name` VARCHAR(100) NOT NULL
 );
 
 -- Creates Games table --
-CREATE TABLE `Games` (
+CREATE OR REPLACE TABLE `Games` (
     `gameID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `title` VARCHAR(100) NOT NULL,
     `developerID` INT(11) NOT NULL,
@@ -19,14 +19,14 @@ CREATE TABLE `Games` (
     `releaseDate` DATE NOT NULL,
     `price` DECIMAL(5,2) NOT NULL,
     `platform` VARCHAR(100) NOT NULL,
-    `condition` BOOLEAN NOT NULL,
+    `condition` TINYINT(1) NOT NULL,
     `quantityInStock` INT NOT NULL,
     CONSTRAINT `developerfk1` FOREIGN KEY (`developerID`) REFERENCES `Developers`(`developerID`)
     ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON UPDATE CASCADE
 );
 -- Creates Customers table --
-CREATE TABLE `Customers` (
+CREATE OR REPLACE TABLE `Customers` (
     `customerID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `firstName` VARCHAR(100) NOT NULL,
     `lastName` VARCHAR(100) NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `Customers` (
 );
 
 -- Creates Orders table --
-CREATE TABLE `Orders` (
+CREATE OR REPLACE TABLE `Orders` (
     `orderID` INT(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `orderDate` DATE NOT NULL,
     `customerID` INT(11) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `Orders` (
 );
 
 -- Creates OrdersGames intersection table --
-CREATE TABLE `OrdersGames`(
+CREATE OR REPLACE TABLE `OrdersGames`(
     `orderID` INT(11) NOT NULL,
     `gameID` INT(11) NOT NULL,
     `quantity` INT(11),
